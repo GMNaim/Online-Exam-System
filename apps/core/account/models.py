@@ -44,8 +44,7 @@ class User(AbstractUser):
                                     message='Username contains alphanumeric, underscore and period(.). Length: 4 to 50'
                                 )])
 
-
-    mobile_number = models.CharField(max_length=12)
+    mobile_number = models.CharField(max_length=12, null=True, blank=True)
     gender = models.IntegerField(choices=GENDER, default=1)
     address = models.TextField(blank=True, null=True)
     country = models.IntegerField()
@@ -60,6 +59,5 @@ class User(AbstractUser):
     locked_at = models.DateTimeField(null=True, blank=True)
     unsuccessful_attempt = models.IntegerField(null=False, blank=False, default=0)
 
-
-def get_full_name(self):
-    return f'{self.first_name} {self.last_name}'
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
