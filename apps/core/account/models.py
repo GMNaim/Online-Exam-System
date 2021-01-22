@@ -16,6 +16,14 @@ class AuditTrail(models.Model):
     class Meta:
         abstract = True
 
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            # For each object a new unique hashed id will be generated.
+            # This will be used instead of default id of each model.
+            self.hashed_id = random_hex_code(length=16)
+        super(AuditTrail, self).save(*args, **kwargs)
+
+
     # def save(self, *args, **kwargs):
     #     if not self.pk:
     #         # Only set added_by during the first save.
@@ -27,6 +35,26 @@ class AuditTrail(models.Model):
     #     else:
     #         self.updated_by = exposed_request.user.id
     #     super(AuditTrail, self).save(*args, **kwargs)
+
+
+class Permission(AuditTrail):
+    name = models.CharField(max_length=50, blank=False,
+                            null=False, unique=True)
+    code = models.CharField(max_length=50, blank=False,
+                            unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Role(AuditTrail):
+    name = models.CharField(max_length=50, blank=False,
+                            null=False, unique=True)
+    code = models.CharField(max_length=50, blank=False, unique=True)
+    permission = models.ManyToManyField(Permission, related_name='role_permission')
+
+    def __str__(self):
+        return self.name
 
 
 class User(AbstractUser):
@@ -58,6 +86,16 @@ class User(AbstractUser):
     is_locked = models.BooleanField(null=False, blank=False, default=False)
     locked_at = models.DateTimeField(null=True, blank=True)
     unsuccessful_attempt = models.IntegerField(null=False, blank=False, default=0)
+    hashed_id = models.CharField(null=True, blank=True, max_length=16, unique=True)
+    role = models.ForeignKey(Role, on_delete=models.PROTECT,
+                             null=False, blank=False,
+                             related_name='user_role',
+                             default=1)
 
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.hashed_id = random_hex_code(length=16)
+        super(User, self).save(*args, **kwargs)
