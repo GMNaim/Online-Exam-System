@@ -51,10 +51,10 @@ def store_user_activity(request, store_json='', description='') -> None:
    :return:
    """
 
-    # from apps.core.account.models import ActivityLog
-    # ActivityLog.objects.create(store_json=store_json,
-    #                            description=description,
-    #                            ip_address=get_user_ip_address(request),
-    #                            browser_details=get_user_browser_details(request))
+    from apps.core.account.models import ActivityLog
+    ActivityLog.objects.create(store_json=store_json,
+                               description=description,
+                               ip_address=get_user_ip_address(request),
+                               browser_details=get_user_browser_details(request))
 
 
