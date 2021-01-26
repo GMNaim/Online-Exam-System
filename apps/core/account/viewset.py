@@ -4,7 +4,7 @@ from django.db.models import Q
 from rest_framework import viewsets
 
 
-class CustomViewset(viewsets.ModelViewSet):
+class CustomViewSet(viewsets.ModelViewSet):
     model = None
     change_keys = None
     search_keywords = None
@@ -36,7 +36,43 @@ class CustomViewset(viewsets.ModelViewSet):
                 queryset = self.model.objects.all()
             elif 'list_view.account_resource' in user_permissions:
                 queryset = self.model.objects.filter(is_active=True)
+            elif 'self_view.account_resource' in user_permissions:
+                view_permissions = self.request.user.role.permission.filter(code__contains='view.').values_list(
+                    'resource_id', flat=True)
+                print(view_permissions)
+                queryset = self.model.objects.filter(is_active=True, permission_resource__in=view_permissions)
+            else:
+                queryset = self.model.objects.none()
 
+        if app_label_class_name == 'account_permission':
+            if self.request.user.role.code in ['super_admin']:
+                queryset = self.model.objects.all()
+            elif 'list_view.account_permission' in user_permissions:
+                queryset = self.model.objects.filter(is_active=True, resource__is_active=True)
+            elif 'self_view.account_permission' in user_permissions:
+                queryset = self.model.objects.filter(is_active=True, id__in=self.request.user.role.permission.all())
+            else:
+                queryset = self.model.objects.none()
 
+        if app_label_class_name == 'account_role':
+            if self.request.user.role.code in ['super_admin']:
+                queryset = self.model.objects.all()
+            elif 'list_view.account_role' in user_permissions:
+                queryset = self.model.objects.filter(~Q(id=1))  # admin can see all roles except role_id=1 or super_user
+            elif 'self_view.account_role' in user_permissions:
+                queryset = self.model.objects.filter(id=self.request.user.role.id)
+            else:
+                queryset = self.model.objects.none()
 
+        if app_label_class_name == 'account_user':
+            if self.request.user.role.code in ['super_admin']:
+                queryset = self.model.objects.all()
+            elif 'list_view.account_user' in user_permissions:
+                queryset = self.model.objects.filter(~Q(role_id=1))
+            elif 'self_view.account_user' in user_permissions:
+                queryset = self.model.objects.filter(id=self.request.user.id)
+            else:
+                queryset = self.model.objects.none()
+
+        return queryset
 
