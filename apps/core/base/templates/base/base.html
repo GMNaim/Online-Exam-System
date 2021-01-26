@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{APPLICATION_NAME}}</title>
+
+
+    <!--[if lt IE 11]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js' %}"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js' %}/1.4.2/respond.min.js' %}"></script>
+    <![endif]-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Datta Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
+
+    <link rel="icon" href="{% static FAVICON_URL %}" type="image/x-icon">
+
+    {% include "base/css.html" %}
+    <style>
+        .custom-select, .form-control{
+            background: #fff;
+            padding: 5px 20px;
+            font-size: 14px;
+            border: 1px solid #aaa;
+            height: auto;
+        }
+    </style>
+    {% block css %} {% endblock %}
+    
+    <script>
+        let permission = []
+        "{% for permission in request.user.role.permission.all %}"
+            "{% if permission.is_active %}" 
+                permission.push("{{permission.code}}") 
+            "{% endif %}"
+        "{% endfor %}"
+
+        let request = {
+            'user': {
+                'id': "{{ request.user.id }}",
+                'username': "{{ request.user.username }}",
+                'full_name': "{{ request.user.first_name }}" + ' ' + "{{ request.user.middle_name|default_if_none:'' }}" + ' ' + "{{ request.user.last_name|default_if_none:'' }}",
+                'position': "{{ request.user.position }}",
+                'email': "{{ request.user.email }}",
+                'role': "{{ request.user.role.id }}",
+                'permissions': permission
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="loader-bg">
+        <div class="loader-track">
+        <div class="loader-fill"></div>
+        </div>
+    </div>
+
+    {% include "base/left_sidebar.html" %}
+    {% include "base/header.html" %}
+
+    <div class="pcoded-main-container">
+      <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+          <div class="pcoded-inner-content">
+            {% block content %} {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% block modal %} {% endblock %}
+    <div class="md-overlay"></div>  {# modal overlay #}
+
+    {% include "base/js.html" %}
+    {% block js %} {% endblock %}
+</body>
+</html>
