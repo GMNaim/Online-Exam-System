@@ -18,23 +18,40 @@ class AuditTrail(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
+            # Only set created_by during the first save.
+            self.created_by = exposed_request.user.id
+            self.updated_by = self.created_by
             # For each object a new unique hashed id will be generated.
             # This will be used instead of default id of each model.
             self.hashed_id = random_hex_code(length=16)
+        else:
+            self.updated_by = exposed_request.user.id
         super(AuditTrail, self).save(*args, **kwargs)
 
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         # Only set added_by during the first save.
-    #         self.created_by = exposed_request.user.id  # exposed_request comes from RequestExposerMiddleware
-    #         self.updated_by = self.created_by
-    #         # For each object a new unique hashed id will be generated.
-    #         # This will be used instead of default id of each model.
-    #         self.hashed_id = random_hex_code(length=16)
-    #     else:
-    #         self.updated_by = exposed_request.user.id
-    #     super(AuditTrail, self).save(*args, **kwargs)
+class ActivityLog(AuditTrail):
+    store_json = models.TextField(blank=True)
+    description = models.CharField(max_length=500)
+    ip_address = models.CharField(max_length=50)
+    browser_details = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.description
+
+
+class Resource(AuditTrail):
+    name = models.CharField(max_length=50, blank=False)
+    icon = models.CharField(max_length=60, blank=True, null=True)
+    code = models.CharField(max_length=50, blank=False, null=False, unique=True)
+    url = models.CharField(max_length=100, blank=True, null=True)
+    parent = models.CharField(max_length=10, blank=True, null=True)
+    order_for_sidebar = models.FloatField(default=1111)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        unique_together = ('name', 'parent')
 
 
 class Permission(AuditTrail):
@@ -42,6 +59,8 @@ class Permission(AuditTrail):
                             null=False, unique=True)
     code = models.CharField(max_length=50, blank=False,
                             unique=True)
+    resource = models.ForeignKey(Resource, on_delete=models.CASCADE, null=False, blank=False,
+                                 related_name='resource_permission')
 
     def __str__(self):
         return self.name
