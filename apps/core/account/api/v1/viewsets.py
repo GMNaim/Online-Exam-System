@@ -5,13 +5,20 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from apps.core.account.api.v1.serializers import UserSerializer, PermissionSerializer, RoleSerializer
-from apps.core.account.models import Permission, Role, User
-from apps.core.base.utils.basics import json_parameter_validation
+from apps.core.account.api.v1.serializers import (UserSerializer,
+                                                  PermissionSerializer,
+                                                  RoleSerializer,
+                                                  ResourceSerializer)
+from apps.core.account.models import (Permission,
+                                      Role,
+                                      User,
+                                      Resource)
+from apps.core.base.utils.basics import json_parameter_validation, store_user_activity
 
 
 @api_view(['POST'])
 def login(request):
+    print(' in api login viewset')
     parameters = request.data
     required_parameters = ['username', 'password']
     # validating data
@@ -26,13 +33,26 @@ def login(request):
         # Activating session based authentication
         user = authenticate(username=request.data['username'], password=request.data['password'])
         auth_login(request, user)
-
+        # Storing user activity in ActivityLog
+        user = User.objects.get(username=request.data['username'])
+        store_user_activity(
+            request,
+            UserSerializer(user).data,
+            f"{user.get_full_name()}({user.username}) logged in successfully."
+        )
     return Response(token.json(), status=token.status_code)
 
 
 @api_view(['GET'])
 def logout(request):
     pass
+
+
+class ResourceViewset(viewsets.ModelViewSet):
+    serializer_class = ResourceSerializer
+    model = Resource
+    queryset = Resource.objects.all()
+    lookup_field = 'hashed_id'
 
 
 class PermissionViewset(viewsets.ModelViewSet):

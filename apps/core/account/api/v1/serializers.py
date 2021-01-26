@@ -1,5 +1,14 @@
 from rest_framework import serializers
-from apps.core.account.models import User, Permission, Role
+from apps.core.account.models import (User,
+                                      Permission,
+                                      Role,
+                                      Resource)
+
+
+class ResourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Resource
+        fields = '__all__'
 
 
 class PermissionSerializer(serializers.ModelSerializer):
