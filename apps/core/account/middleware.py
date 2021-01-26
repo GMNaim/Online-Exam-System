@@ -31,3 +31,10 @@ class LoginRequiredMiddleware(MiddlewareMixin):
                     return redirect(settings.LOGIN_URL)
 
 
+def RequestExposerMiddleware(get_response):
+    """ Pass request object to account.models """
+    def middleware(request):
+        models.exposed_request = request
+        response = get_response(request)
+        return response
+    return middleware
