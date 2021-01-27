@@ -1,0 +1,346 @@
+[
+  {
+    "model": "account.permission",
+    "pk": 2,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Add Resource",
+      "code": "add.account_resource",
+      "resource": 2
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 3,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Edit Resource",
+      "code": "change.account_resource",
+      "resource": 2
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 4,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Self View Resource",
+      "code": "self_view.account_resource",
+      "resource": 2
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 5,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "List View Resource",
+      "code": "list_view.account_resource",
+      "resource": 2
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 6,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Detail View Resource",
+      "code": "detail_view.account_resource",
+      "resource": 2
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 7,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Delete Resource",
+      "code": "delete.account_resource",
+      "resource": 2
+    }
+  },
+
+
+
+  {
+    "model": "account.permission",
+    "pk": 8,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Add Permission",
+      "code": "add.account_permission",
+      "resource": 3
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 9,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Edit Permission",
+      "code": "change.account_permission",
+      "resource": 3
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 10,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Self View Permission",
+      "code": "self_view.account_permission",
+      "resource": 3
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 11,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "List View Permission",
+      "code": "list_view.account_permission",
+      "resource": 3
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 12,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Detail View Permission",
+      "code": "detail_view.account_permission",
+      "resource": 3
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 13,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Delete Permission",
+      "code": "delete.account_permission",
+      "resource": 3
+    }
+  },
+
+
+  {
+    "model": "account.permission",
+    "pk": 14,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Add Role",
+      "code": "add.account_role",
+      "resource": 4
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 15,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Edit Role",
+      "code": "change.account_role",
+      "resource": 4
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 16,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Self View Role",
+      "code": "self_view.account_role",
+      "resource": 4
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 17,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "List View Role",
+      "code": "list_view.account_role",
+      "resource": 4
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 18,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Detail View Role",
+      "code": "detail_view.account_role",
+      "resource": 4
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 19,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Delete Role",
+      "code": "delete.account_role",
+      "resource": 4
+    }
+  },
+
+
+
+  {
+    "model": "account.permission",
+    "pk": 20,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Add User",
+      "code": "add.account_user",
+      "resource": 5
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 21,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Edit User",
+      "code": "change.account_user",
+      "resource": 5
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 22,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Self View User",
+      "code": "self_view.account_user",
+      "resource": 5
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 23,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "List View User",
+      "code": "list_view.account_user",
+      "resource": 5
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 24,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Detail View User",
+      "code": "detail_view.account_user",
+      "resource": 5
+    }
+  },
+  {
+    "model": "account.permission",
+    "pk": 25,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Delete User",
+      "code": "delete.account_user",
+      "resource": 5
+    }
+  }
+]

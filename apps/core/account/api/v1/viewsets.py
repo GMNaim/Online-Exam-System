@@ -13,6 +13,8 @@ from apps.core.account.models import (Permission,
                                       Role,
                                       User,
                                       Resource)
+from apps.core.account.permission import UserAccessApiBasePermission
+from apps.core.account.viewset import CustomViewSet
 from apps.core.base.utils.basics import json_parameter_validation, store_user_activity
 
 
@@ -48,29 +50,37 @@ def logout(request):
     pass
 
 
-class ResourceViewset(viewsets.ModelViewSet):
+class ResourceViewset(CustomViewSet):
     serializer_class = ResourceSerializer
+    permission_classes = [UserAccessApiBasePermission]
     model = Resource
     queryset = Resource.objects.all()
     lookup_field = 'hashed_id'
 
 
-class PermissionViewset(viewsets.ModelViewSet):
+class PermissionViewset(CustomViewSet):
     serializer_class = PermissionSerializer
+    permission_classes = [UserAccessApiBasePermission]
     model = Permission
     queryset = Permission.objects.all()
     lookup_field = 'hashed_id'
 
 
-class RoleViewset(viewsets.ModelViewSet):
+class RoleViewset(CustomViewSet):
     serializer_class = RoleSerializer
+    permission_classes = [UserAccessApiBasePermission]
     model = Role
     queryset = Role.objects.all()
     lookup_field = 'hashed_id'
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(CustomViewSet):
     serializer_class = UserSerializer
+    permission_classes = [UserAccessApiBasePermission]
     model = User
     queryset = User.objects.all()
     lookup_field = 'hashed_id'  # Individual object will be found by this field
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.order_by('-id')
