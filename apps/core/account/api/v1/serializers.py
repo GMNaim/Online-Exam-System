@@ -42,6 +42,7 @@ class UserSerializer(serializers.ModelSerializer):
             is_active=validated_data.get('is_active'),
             country=validated_data.get('country'),
             address=validated_data.get('address'),
+            role=validated_data.get('role'),
         )
         if self.context['request'].data.get('file_profile_picture') is not None:
             user.profile_picture = self.context['request'].data['file_profile_picture']
@@ -63,6 +64,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.is_active = validate_data.get('is_active', instance.is_active)
         instance.country = validate_data.get('country', instance.country)
         instance.address = validate_data.get('address', instance.address)
+        instance.role = validate_data.get('role', instance.role)
 
         if 'password' in validate_data:
             instance.set_password(validate_data.get('password'))
