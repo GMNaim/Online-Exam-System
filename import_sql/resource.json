@@ -1,0 +1,87 @@
+[
+  {
+    "model": "account.resource",
+    "pk": 1,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "User Management",
+      "code": "user_management",
+      "url": null,
+      "parent": null,
+      "icon": "<i class=\"fas fa-users-cog\"></i>",
+      "order_for_sidebar": 2
+    }
+  },
+  {
+    "model": "account.resource",
+    "pk": 2,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Resource",
+      "code": "resource",
+      "url": "/resource/",
+      "parent": "9",
+      "icon": null,
+      "order_for_sidebar": 11111
+    }
+  },
+  {
+    "model": "account.resource",
+    "pk": 3,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Permission",
+      "code": "permission",
+      "url": "/permission/",
+      "parent": "1",
+      "icon": null,
+      "order_for_sidebar": 2.1
+    }
+  },
+  {
+    "model": "account.resource",
+    "pk": 4,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Role",
+      "code": "/role/",
+      "url": null,
+      "parent": null,
+      "icon": null,
+      "order_for_sidebar": 2.2
+    }
+  },
+  {
+    "model": "account.resource",
+    "pk": 5,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "User",
+      "code": "user",
+      "url": "/user/",
+      "parent": null,
+      "icon": null,
+      "order_for_sidebar": 2.3
+    }
+  }
+]

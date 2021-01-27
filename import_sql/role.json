@@ -1,0 +1,40 @@
+[
+  {
+    "model": "account.role",
+    "pk": 1,
+    "fields": {
+      "created_by": "1",
+      "updated_by": "1",
+      "created_at": "2021-01-22T03:09:27.664267Z",
+      "updated_at": "2021-01-24T14:03:52.375088Z",
+      "is_active": true,
+      "name": "Super Admin",
+      "code": "super_admin",
+      "permission": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ]
+    }
+  }
+]

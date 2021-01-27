@@ -80,3 +80,7 @@ class UserViewSet(CustomViewSet):
     model = User
     queryset = User.objects.all()
     lookup_field = 'hashed_id'  # Individual object will be found by this field
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.order_by('-id')
