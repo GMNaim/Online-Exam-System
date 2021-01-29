@@ -1,7 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
+# ugettext is a unicode version of a translatable string.
+# ugettext_lazy is a "lazy" version of that. Lazy strings are
+# a Django-ism; they are string-like objects that don't
+# actually turn into the real string until the last possible minute.
+# Often, you can't know how to translate a string until late in the process.
+from apps.core.account.manager import UserManager
 from apps.core.base.utils.basics import random_hex_code
 
 
@@ -84,7 +91,7 @@ class User(AbstractUser):
     )
 
     middle_name = models.CharField(max_length=50, blank=True, null=True)
-    email = models.EmailField(unique=True, null=False, blank=False)
+    email = models.EmailField(_('email address'), unique=True, null=False, blank=False)
     username = models.CharField(max_length=50, unique=True, null=False, blank=False,
                                 validators=[RegexValidator(
                                     regex='[-a-zA-Z0-9_.]{4,50}$',
@@ -94,7 +101,7 @@ class User(AbstractUser):
     mobile_number = models.CharField(max_length=12, null=True, blank=True)
     gender = models.IntegerField(choices=GENDER, default=1)
     address = models.TextField(blank=True, null=True)
-    country = models.IntegerField()
+    country = models.IntegerField(default=1)
     # activation_url = models.CharField(max_length=500, blank=False, default=get_activation_url)
     profile_picture = models.ImageField(upload_to='user/profile_picture/', blank=True, null=True)
     signature = models.ImageField(upload_to='user/signature/', blank=True, null=True)
@@ -111,8 +118,16 @@ class User(AbstractUser):
                              related_name='user_role',
                              default=1)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    objects = UserManager()
+
     def get_full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.last_name}'.strip()
+
+    def __str__(self):
+        return self.username
 
     def save(self, *args, **kwargs):
         if not self.pk:

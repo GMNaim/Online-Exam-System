@@ -20,23 +20,21 @@ from apps.core.base.utils.basics import json_parameter_validation, store_user_ac
 
 @api_view(['POST'])
 def login(request):
-    print(' in api login viewset')
     parameters = request.data
-    required_parameters = ['username', 'password']
+    required_parameters = ['email', 'password']
     # validating data
     error_parameters = json_parameter_validation(parameters, required_parameters)  # return the missing parameter
     if error_parameters is not None:
         return Response({"Details": f"{error_parameters} required."}, status=status.HTTP_400_BAD_REQUEST)
 
     url = f"{request.build_absolute_uri().split('/api')[0]}{reverse('core:account:token_obtain_pair')}"
-    print(url, '-0-----', reverse('core:account:token_obtain_pair'))
     token = requests.post(url, json=parameters)
     if token.status_code == 200:
         # Activating session based authentication
-        user = authenticate(username=request.data['username'], password=request.data['password'])
+        user = authenticate(email=request.data['email'], password=request.data['password'])
         auth_login(request, user)
         # Storing user activity in ActivityLog
-        user = User.objects.get(username=request.data['username'])
+        user = User.objects.get(email=request.data['email'])
         store_user_activity(
             request,
             UserSerializer(user).data,
