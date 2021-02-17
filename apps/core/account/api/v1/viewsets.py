@@ -2,7 +2,7 @@ import requests
 from django.contrib.auth import authenticate, login as auth_login
 from django.db import transaction
 from django.shortcuts import reverse
-from rest_framework import viewsets, status
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.conf import settings
@@ -83,10 +83,13 @@ def check_email_existance(request):
     else:
         return Response({"details": "Valid Email"}, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
-def active_user(request, activation_url):
-    try:
-        user = User.objects.get()
+# @api_view(['GET'])
+# def active_user(request, activation_url):
+#     try:
+#         user = User.objects.get()
+#
+
+
 @api_view(['POST'])
 def login(request):
     parameters = request.data
@@ -117,7 +120,7 @@ def logout(request):
     pass
 
 
-class ResourceViewset(CustomViewSet):
+class ResourceViewSet(CustomViewSet):
     serializer_class = ResourceSerializer
     permission_classes = [UserAccessApiBasePermission]
     model = Resource
@@ -125,7 +128,7 @@ class ResourceViewset(CustomViewSet):
     lookup_field = 'hashed_id'
 
 
-class PermissionViewset(CustomViewSet):
+class PermissionViewSet(CustomViewSet):
     serializer_class = PermissionSerializer
     permission_classes = [UserAccessApiBasePermission]
     model = Permission
@@ -133,7 +136,7 @@ class PermissionViewset(CustomViewSet):
     lookup_field = 'hashed_id'
 
 
-class RoleViewset(CustomViewSet):
+class RoleViewSet(CustomViewSet):
     serializer_class = RoleSerializer
     permission_classes = [UserAccessApiBasePermission]
     model = Role

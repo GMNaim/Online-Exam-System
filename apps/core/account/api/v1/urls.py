@@ -6,16 +6,16 @@ from rest_framework_simplejwt.views import (
 )
 
 from .viewsets import (UserViewSet,
-                       PermissionViewset,
-                       RoleViewset,
-                       ResourceViewset,
+                       PermissionViewSet,
+                       RoleViewSet,
+                       ResourceViewSet,
                        login,
                        logout)
 
 router = routers.DefaultRouter()
-router.register('resource', ResourceViewset)
-router.register('permission', PermissionViewset)
-router.register('role', RoleViewset)
+router.register('resource', ResourceViewSet)
+router.register('permission', PermissionViewSet)
+router.register('role', RoleViewSet)
 router.register('user', UserViewSet)
 
 urlpatterns = [
