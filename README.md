@@ -5,7 +5,7 @@ To run this project following are required.
 
 - [Python](https://www.python.org/)
 - [Django](https://www.djangoproject.com/)
-- [Django Rest Framework]
+- [Django Rest Framework](https://www.django-rest-framework.org/)
 
 ## Quickstart
 
